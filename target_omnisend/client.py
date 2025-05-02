@@ -1,14 +1,11 @@
 from target_hotglue.client import HotglueSink
+from target_hotglue.auth import Authenticator
 
-
-class OmnisendApiKeyAuthenticator:
-    def __init__(self, target, api_key) -> None:
-        self.target_name: str = target.name
-        self.api_key = api_key
+class OmnisendApiKeyAuthenticator(Authenticator):
 
     @property
     def auth_headers(self):
-        return {"X-API-KEY": self.api_key}
+        return {"X-API-KEY": self._config.get("api_key")}
 
 
 class OmnisendSink(HotglueSink):
@@ -19,4 +16,4 @@ class OmnisendSink(HotglueSink):
 
     @property
     def authenticator(self):
-        return OmnisendApiKeyAuthenticator(self._target, self.config.get("api_key"))
+        return OmnisendApiKeyAuthenticator(self._target)

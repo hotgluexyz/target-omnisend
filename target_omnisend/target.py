@@ -6,7 +6,7 @@ from target_omnisend.sinks import (
 )
 
 
-class TargetOmniSend(TargetHotglue):
+class TargetOmnisend(TargetHotglue):
     name = "target-omnisend"
     SINK_TYPES = [ContactsSink]
     MAX_PARALLELISM = 1
@@ -17,4 +17,4 @@ class TargetOmniSend(TargetHotglue):
 
 
 if __name__ == "__main__":
-    TargetOmniSend.cli()
+    TargetOmnisend.cli()
